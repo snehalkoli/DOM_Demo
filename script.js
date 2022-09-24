@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
      // add movie
      const addForm=forms['add-movie'];
      addForm.addEventListener('submit',function(e){
-        e.PreventDefault();
+        e.preventDefault();
         // creating elements
             const value=addForm.querySelector('input[type="text"]').value;
             const li=document.createElement('li');
@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
              //append to DOM
              li.appendChild(movieName);
              li.appendChild(deleteBtn);
-             list.appendChild( )
+             list.appendChild(li);
 
 
-     }) 
+     }); 
 });
 
