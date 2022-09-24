@@ -103,7 +103,7 @@ h1,h2{
 #add-movie:after{
   content: "";
   display: block;
-  clear: both;
+  /* clear: both; */
 }
 #add-movie label{
     line-height: 52px;

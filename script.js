@@ -1,54 +1,40 @@
-const addB = document.getElementsByClassName('add-button')[0];
-const listB = document.getElementsByClassName('movie-list')[0];
 
-function addElement(){
-    const inputBox=document.getElementsByClassName('movie-input')[0];
-    const inputText=inputBox.value;
-    console.log(inputText);
-    if(inputText){
-        createItem(inputText);
-    }
-    function createItem(value){
-        const newD = document.createElement('div');
-        const item = document.createElement('li');
-        item.setAttribute('class','movie-list');
-        item.innerText = value;
-        // const p = document.createElement('p');
-        // p.innerText = value;
-        // const complete = document.createElement('button');
-        // complete.innerText = "completed";
-        // complete.setAttribute('class','complete-btn');
-        const trash = document.createElement('span');
-        trash.innerText = "delete";
-        trash.setAttribute('class','delete');
-        // item.append(...[p,complete,trash]);
-        newD.append(...[item, trash]);
-        listB.appendChild(newD);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const list=document.querySelector('#movie-list ul');
+    const forms=document.forms;
+    //delete movie
 
-    addB.addEventListener('click',function(event){
-    event.preventDefault();
-    addElement();
+     list.addEventListener('click',(e)=>{
+        if(e.target.className=='delete'){
+        const li=e.target.parentElement;
+        li.parentNode.removeChild(li); 
+     } 
+    });
+    
+     // add movie
+     const addForm=forms['add-movie'];
+     addForm.addEventListener('submit',function(e){
+        e.PreventDefault();
+        // creating elements
+            const value=addForm.querySelector('input[type="text"]').value;
+            const li=document.createElement('li');
+            const movieName=document.createElement('span');
+            const deleteBtn=document.createElement('span');
 
+             //add text content 
+             movieName.textContent=value;
+             deleteBtn.textContent='delete';
+
+             //add classes
+             movieName.classList.add('name');
+             deleteBtn.classList.add('delete')
+             
+             //append to DOM
+             li.appendChild(movieName);
+             li.appendChild(deleteBtn);
+             list.appendChild( )
+
+
+     }) 
 });
 
-document.addEventListener('click',function(event){
-    if(event.target.className === "trash-btn"){
-        // console.log(event.target);
-        const removeItem = event.target.parentNode ;
-        // console.log(removeItem);
-        removeItem.remove();
-    }
-    else if(event.target.className === "complete-btn"){
-        const removeItem = event.target.parentNode.childNodes[0] ;
-        if(removeItem.classList.contains('strikeh')){
-            removeItem.classList.remove('strikeh');
-        }
-        else
-        {
-            removeItem.classList.add('strikeh');
-        }
-    }
-})
-
-}
